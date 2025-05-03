@@ -15,4 +15,14 @@ const verifyToken = (req,res,next) =>{
     next();
 }
 
+exports.verifyAdmin = (req,res,next) =>{
+    verifyToken(req,res,()=>{
+        if(req.user.isAdmin){
+            next()
+        }else{
+            return next(createError(403,"only admin can upload products"))
+        }
+    })
+}
+
 module.exports = verifyToken;

@@ -23,7 +23,15 @@ exports.registerUser = async (req, res, next) => {
 
 exports.loginUser = async (req, res, next) => {
     try {
-        const user = await userModel.findOne({ email: req.body.email })
+        // let user;
+        // if(req.user.email.includes("@")){
+        //     user = await userModel.findOne({ email:req.body.email})
+        // }else{
+        //     user = await userModel.findOne({ mobile:req.body.email})
+        // }
+
+        const user = await userModel.findOne({ email:req.body.email})
+
         if (!user) return next(createError(404, "user don't exist !"))
 
         var bytes = CryptoJS.AES.decrypt(user.password, process.env.PASSENC);
