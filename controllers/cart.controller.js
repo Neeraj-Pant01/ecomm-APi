@@ -44,7 +44,7 @@ exports.removeProduct = async (req, res, next) => {
         {
             $pull:{
                 products: {
-                    productId: req.params.productId
+                    id: req.params.productId
                 }
             }
         },{

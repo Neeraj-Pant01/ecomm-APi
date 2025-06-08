@@ -1,3 +1,6 @@
+const orderModel = require("../models/order.model");
+const cartModel = require('../models/cart.model')
+const wishlistModel = require("../models/Wishlist")
 const productModel = require("../models/products.model");
 const createError = require("../utils/createError");
 
@@ -74,6 +77,12 @@ exports.deleteProduct = async (req, res, next) => {
     if (req.user.isAdmin) {
         try {
             const product = await productModel.findByIdAndDelete(req.params.id)
+            await cartModel.updateMany({}, { $pull: { products: { _id:req.params.id } } });
+
+            // Remove product from all wishlists
+            await wishlistModel.updateMany({}, { $pull: { products: {productId:req.params.id} } });
+
+            await orderModel.deleteMany({productId:req.params.id})
         } catch (err) {
             next(err)
         }
