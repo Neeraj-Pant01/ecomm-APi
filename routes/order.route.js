@@ -13,7 +13,7 @@
 // module.exports = router; 
 
 
-const { createOrder, updateOrder, getAllOrders, getUserOrders, getAnOrder, deleteOrder } = require("../controllers/order.controller");
+const { createOrder, updateOrder, getAllOrders, getUserOrders, getAnOrder, deleteOrder, verifyPayment } = require("../controllers/order.controller");
 const { verifyRazorpayPayment } = require("../controllers/paymentVerification.controller");
 const verifyToken = require("../middleware/verifyToken");
 
@@ -130,6 +130,8 @@ const router = require("express").Router();
  *               $ref: '#/components/schemas/Order'
  */
 router.post("/order/:id",verifyToken,createOrder)
+
+router.post('/verify-payment', verifyToken, verifyPayment)
 
 
 /**

@@ -24,7 +24,7 @@ const options = {
       
     servers: [
       {
-        url: 'http://localhost:9000/api/v1',
+        url: 'http://api.favouser.com/api/v1',
       },
     ],
   },

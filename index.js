@@ -8,8 +8,10 @@ const userRoute = require("./routes/user.route")
 const productRoute = require("./routes/products.route")
 const orderRoute = require("./routes/order.route")
 const cartRoute = require("./routes/cart.route")
+const wishlistRoute = require("./routes/wishlist.route")
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swagger');
+const contactRoute = require('./routes/contact.route')
 
 const app = express()
 app.use(cors())
@@ -30,6 +32,9 @@ app.use('/api/v1/user', userRoute)
 app.use('/api/v1/products', productRoute)
 app.use('/api/v1/orders',orderRoute)
 app.use('/api/v1/cart',cartRoute)
+app.use('/api/v1/wishlist',wishlistRoute)
+app.use('/api/v1/contact',contactRoute)
+
 
 const PORT = process.env.PORT || 9000;
 

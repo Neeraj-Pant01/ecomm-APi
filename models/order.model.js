@@ -113,6 +113,7 @@ const orderSchema = new mongoose.Schema({
   },
   size: {
     type: String,
+    default:"none",
     required: true,
   },
   color: {
@@ -120,7 +121,7 @@ const orderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "completed", "delivered"],
+    enum: ["pending", "completed", "delivered", 'confirmed'],
     default: "pending",
   },
   // 💰 Payment Related
