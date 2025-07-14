@@ -18,10 +18,10 @@ exports.postContactInfo = async (req,res,next) =>{
 
 
 exports.getCOntacts = async (req,res,next) =>{
-    if(req.user.admin){
+    if(req.user.isAdmin){
     try{
         const contacts = await contactModel.find()
-        res.status(200).json({message:"hello babe"})
+        res.status(200).json(contacts)
     }catch(err){
         next(err)
     }

@@ -241,6 +241,22 @@ exports.deleteOrder = async (req, res, next) => {
   }
 }
 
+exports.cancelOrder = async (req,res,next) =>{
+  try{
+    const response = await orderModel.findOneAndUpdate({
+      _id: req.params.id,
+      userId: req.user.id
+    },{
+      isCancelled: true
+    },{
+      new: true
+    })
+    if(!response) return next(createError(404, "order not found !"))
+      res.status(200).json(response)
+  }catch(err){
+    next(err)
+  }
+}
 
 
 

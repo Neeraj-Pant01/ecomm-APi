@@ -26,6 +26,9 @@ const options = {
       {
         url: 'https://api.favouser.com/api/v1',
       },
+      {
+        url:'http://localhost:9000/api/v1',
+      }
     ],
   },
 apis: ["./routes/*.js"],

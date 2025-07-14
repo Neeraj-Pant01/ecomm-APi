@@ -152,7 +152,10 @@ const orderSchema = new mongoose.Schema({
   shiprocketOrderId: {
     type: String,
   },
-
+  isCancelled:{
+    type:Boolean,
+    default: false
+  }
 }, {
   timestamps: true,
 });

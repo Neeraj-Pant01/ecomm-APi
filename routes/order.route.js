@@ -13,7 +13,7 @@
 // module.exports = router; 
 
 
-const { createOrder, updateOrder, getAllOrders, getUserOrders, getAnOrder, deleteOrder, verifyPayment } = require("../controllers/order.controller");
+const { createOrder, updateOrder, getAllOrders, getUserOrders, getAnOrder, deleteOrder, verifyPayment, cancelOrder } = require("../controllers/order.controller");
 const { verifyRazorpayPayment } = require("../controllers/paymentVerification.controller");
 const verifyToken = require("../middleware/verifyToken");
 
@@ -263,6 +263,9 @@ router.get('/:id',verifyToken,getAnOrder)
  *                   type: string
  */
 router.delete('/:id',verifyToken,deleteOrder)
+
+
+router.patch('/cancel/:id', verifyToken, cancelOrder)
 
 router.post("/verify-payment", verifyRazorpayPayment);
 
