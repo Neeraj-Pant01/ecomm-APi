@@ -63,7 +63,13 @@ exports.getProducts = async (req, res, next) => {
                 ...(q.max && { $lt: q.max })
             }
         }),
-        ...(q.search && { productName: { $regex: q.search, $options: "i" } })
+        ...(q.color && {defaultColor:{$regex : q.color} }),
+        ...(q.search && { $or : 
+            [{productName: { $regex: q.search, $options: "i" } },
+            {productDesc : {$regex : q.search, $options : 'i'}},
+            {categories : {$regex : q.search, $options : 'i'}}
+        ]}),
+        ...(q.productName && {productName: { $regex: q.productName, $options: "i" }})
     }
     try {
         const products = show ? await productModel.find().limit(6) : await productModel.find(filters).sort({ [q.sort]: -1 })
