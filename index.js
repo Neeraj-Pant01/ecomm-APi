@@ -12,6 +12,7 @@ const wishlistRoute = require("./routes/wishlist.route")
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swagger');
 const contactRoute = require('./routes/contact.route')
+const reviewRoute = require('./routes/review.route')
 
 const app = express()
 app.use(cors())
@@ -34,7 +35,7 @@ app.use('/api/v1/orders',orderRoute)
 app.use('/api/v1/cart',cartRoute)
 app.use('/api/v1/wishlist',wishlistRoute)
 app.use('/api/v1/contact',contactRoute)
-
+app.use('/api/v1/reviews',reviewRoute)
 
 const PORT = process.env.PORT || 9000;
 

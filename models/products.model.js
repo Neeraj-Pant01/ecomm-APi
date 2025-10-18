@@ -64,10 +64,17 @@ const productSchema = new mongoose.Schema({
     avilableColors: {
         type: [String],
     },
+    features:{
+        type:[String],
+    },
     length: { type: Number, default: 10 },  // in cm
     breadth: { type: Number, default: 10 }, // in cm
     height: { type: Number, default: 10 },  // in cm
-    weight: { type: Number, default: 0.5 }  // in kg
+    weight: { type: Number, default: 0.5 },  // in kg
+    others:{
+        type:mongoose.Schema.Types.Mixed,
+        default:{}
+    }
 }, {
     timestamps: true
 })
